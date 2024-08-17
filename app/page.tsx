@@ -1,8 +1,10 @@
-import Image from "next/image";
-import { ModeToggle } from "@/components/mode-toggle";
+import Hero from "./components/hero";
 
 export default function Home() {
   return (
-    <div>dadada</div>
+    <main className="">
+      <Hero />
+      <div className="mt-20">dada</div>
+    </main>
   );
 }

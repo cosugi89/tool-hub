@@ -5,7 +5,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import { cn } from "@/lib/utils";
-import SideBar from "./components/side-bar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,7 +31,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="flex">{children}</main>
+          {children}
           <Footer />
         </ThemeProvider>
       </body>

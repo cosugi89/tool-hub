@@ -16,27 +16,41 @@ export default function Header() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 p-4 flex justify-between items-center border-b  bg-background z-50">
-        <div>
-          <Button onClick={toggleMenu} variant="ghost" className="lg:hidden">
-            {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
-          </Button>
+        <Button onClick={toggleMenu} variant="ghost" className="lg:hidden">
+          {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
+        </Button>
+
+        <div className="flex">
+          <Link href="/">
+            <Image
+              src="https://interfaceingame.com/wp-content/themes/interface-in-game/dist/assets/static/images/logo.svg"
+              alt=""
+              width={100}
+              height={100}
+              className="h-8"
+            />
+          </Link>
+          <div className="hidden lg:block">
+            {menuLinks.map((links) => (
+              <Button key={links.id} variant="ghost" asChild>
+                <Link href={`/${links.id}`} className="font-semibold">
+                  {links.label}
+                </Link>
+              </Button>
+            ))}
+          </div>
         </div>
 
-        <Link href="/">
-          <Image
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={100}
-            height={24}
-            className="h-10"
-          />
-        </Link>
-
-        <Button variant="ghost">
+        <Button variant="ghost" className="lg:hidden">
           <Search size={32} />
+        </Button>
+
+        <Button className="font-semibold hidden lg:block" variant="secondary">
+          LOGIN
         </Button>
       </header>
 
+      {/* ハンバーガーメニューの中身 */}
       <div
         className={`fixed top-0 left-0 right-0 bottom-0 bg-primary z-40 transform transition-transform duration-300 ease-in-out ${
           isMenuOpen ? "translate-y-0" : "-translate-y-full"
