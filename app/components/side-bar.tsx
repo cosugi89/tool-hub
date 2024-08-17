@@ -6,18 +6,22 @@ export default function SideBar() {
   return (
     <div className="hidden lg:block w-64 border-r">
       <div className=" flex flex-col p-4">
-          {TAGS.map ((tag) => (
-            <Button
-              variant="ghost"
-              className=" justify-start"
-              key={tag.id}
-              asChild
-            >
-              <Link href={`/${tag.id}`}>{tag.label}</Link>
-            </Button>
-          ))}
-        </div>
+        <Button variant="ghost" className=" justify-start" asChild>
+          <Link href="/">リンク</Link>
+        </Button>
+        <Button variant="ghost" className=" justify-start" asChild>
+          <Link href="/">リンク</Link>
+        </Button>
+        <Button variant="ghost" className=" justify-start" asChild>
+          <Link href="/">リンク</Link>
+        </Button>
+        <Button variant="ghost" className=" justify-start" asChild>
+          <Link href="/">リンク</Link>
+        </Button>
+        <Button variant="ghost" className=" justify-start" asChild>
+          <Link href="/">リンク</Link>
+        </Button>
+      </div>
     </div>
-
-  )
+  );
 }

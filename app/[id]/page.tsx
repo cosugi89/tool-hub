@@ -3,6 +3,12 @@ import { ArrowUpRight } from "lucide-react";
 import ItemCard from "@/components/item-card";
 import { ItemType, allItems } from "@/data";
 
+// export async function generateStaticParams() {
+//   return itemTypes.map((id) => ({
+//     id,
+//   }));
+// }
+
 export default function Page({
   params: { id },
 }: {

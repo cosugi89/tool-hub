@@ -22,21 +22,17 @@ export default function RootLayout({
   return (
     <html lang="ja" suppressHydrationWarning>
       <body
-        className={cn(inter.className, "h-dvh flex flex-col")} suppressHydrationWarning
+        className={cn(inter.className, "h-dvh flex flex-col")}
+        suppressHydrationWarning
       >
         <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <Header />
-          <main className="flex flex-1">
-            <SideBar />
-            <div className="flex-1 bg-muted/40">
-            {children}
-            </div>
-          </main>
+          <main className="flex">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>
