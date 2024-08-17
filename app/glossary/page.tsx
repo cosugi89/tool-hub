@@ -5,7 +5,7 @@ export default function Page() {
     <div>
       <div className="flex flex-1">
         <SideBar />
-        <div className="flex-1 bg-muted/40">
+        <div className="bg-muted/40">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit ex
           natus inventore dolore neque praesentium a provident laboriosam
           officiis quasi illo, qui quaerat rerum laborum consequuntur possimus
