@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { menuLinks, otherLinks } from "@/lib/links";
+import { menuLinks, otherLinks } from "@/data/links";
 import Image from "next/image";
 import Link from "next/link";
 
