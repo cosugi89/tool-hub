@@ -1,31 +1,45 @@
+"use client";
+
 import { Accordion } from "@/components/ui/accordion";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { mainTags } from "@/data/tag";
-import { getTagLabel } from "@/lib/tag";
+import { mainTags, TagId } from "@/data/tag";
+import { useTagParams } from "@/hooks/tag-params";
+import { getTagLabel, getTagSubLabel } from "@/lib/tag";
 import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@radix-ui/react-accordion";
-
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Filter() {
+  const defaultTags = (useSearchParams().get("tags")?.split(",") ??
+    []) as TagId[];
+
+  const { addTagToSearchParams, removeTagFromSearchParams } = useTagParams();
+  const router = useRouter();
+
   return (
-    <>
-      <Accordion type="single" defaultValue="item-1" className="" collapsible>
+    <div className="w-52">
+      <Accordion type="single" defaultValue="item-1" collapsible>
         <AccordionItem value="item-1">
           <AccordionTrigger className="my-4">
-            <span>CATEGORY</span>
+            <span>
+              CATEGORY
+              <span className="text-muted-foreground text-xs ml-3">
+                カテゴリー
+              </span>
+            </span>
           </AccordionTrigger>
           <AccordionContent>
             <RadioGroup defaultValue="04" className="mb-10">
               {mainTags.map((tagId) => (
                 <Link
                   key={tagId}
-                  href={`/glossary?tags=${tagId}`}
+                  href={`/glossary?tags=${addTagToSearchParams(tagId)}`}
                   passHref
                   legacyBehavior
                 >
@@ -39,7 +53,7 @@ export default function Filter() {
                         <div className="text-xs">
                           {getTagLabel(tagId)}
                           <span className="text-muted-foreground text-xs ml-3">
-                            subLabel{/* {item.subLabel} */}
+                            {getTagSubLabel(tagId)}
                           </span>
                         </div>
                         <div className="text-muted-foreground text-xs">
@@ -54,7 +68,56 @@ export default function Filter() {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-      <div className="container border-t">
+
+      <div className="border-t">
+        <Accordion type="single" defaultValue="item-1" collapsible>
+          <AccordionItem value="item-1">
+            <AccordionTrigger className="my-4">
+              <span>
+                TAG
+                <span className="text-muted-foreground text-xs ml-3">
+                  タグで絞り込む
+                </span>
+              </span>
+            </AccordionTrigger>
+            <AccordionContent>
+              <div className="mb-10">
+                <div className="flex space-x-4 items-center">
+                  <Checkbox
+                    id="13"
+                    onCheckedChange={(v) => {
+                      if (v) {
+                        router.replace(
+                          `/glossary?tags=${addTagToSearchParams(
+                            "聖魔十二守護王",
+                            true
+                          )}`
+                        );
+                      } else {
+                        router.replace(
+                          `/glossary?tags=${removeTagFromSearchParams(
+                            "聖魔十二守護王"
+                          )}`
+                        );
+                      }
+                    }}
+                  />
+                  <Label
+                    htmlFor="13"
+                    className="text-base w-[77%] flex justify-between items-center py-1 cursor-pointer"
+                  >
+                    <div className="text-xs">聖魔十二守護王</div>
+                    <div className="text-muted-foreground text-xs">
+                      500{/* {item.value} */}
+                    </div>
+                  </Label>
+                </div>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </div>
+      {/* <div className="container border-t">
         <Accordion
           type="single"
           defaultValue="item-1"
@@ -94,51 +157,8 @@ export default function Filter() {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-      </div>
-      <div className="container border-t">
-        <Accordion
-          type="single"
-          defaultValue="item-1"
-          className="container"
-          collapsible
-        >
-          <AccordionItem value="item-1">
-            <AccordionTrigger className="my-4">
-              <span>
-                TAG
-                <span className="text-muted-foreground text-xs ml-3">
-                  タグで絞り込む
-                </span>
-              </span>
-            </AccordionTrigger>
-            <AccordionContent>
-              <div className="mb-10">
-                <div className="flex space-x-4 items-center">
-                  <Checkbox id="13" />
-                  <Label
-                    htmlFor="13"
-                    className="text-base w-[100%] flex justify-between items-center py-2"
-                  >
-                    <div>魔物｜モンスター</div>
-                    <div className="text-muted-foreground text-xs">500</div>
-                  </Label>
-                </div>
-                <div className="flex space-x-4 items-center">
-                  <Checkbox id="14" />
-                  <Label
-                    htmlFor="14"
-                    className="text-base w-[100%] flex justify-between items-center py-2"
-                  >
-                    <div>魔物｜モンスター</div>
-                    <div className="text-muted-foreground text-xs">500</div>
-                  </Label>
-                </div>
-              </div>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-      </div>
-    </>
+      </div> */}
+    </div>
   );
 }
 

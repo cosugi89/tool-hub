@@ -16,16 +16,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
 import { itemlist } from "@/data/item";
 import { TagId } from "@/data/tag";
 import Link from "next/link";
@@ -49,8 +39,12 @@ export default function GlossaryPage({
       {currentItems.map((item) => (
         <Card key={item} className="relative hover:shadow-red-600">
           <CardHeader>
-            <CardTitle className="mb-4">
-              {item.label}
+            <CardTitle className="flex flex-wrap space-y-3 mb-4">
+              <span className="mr-3">{item.label}</span>
+
+              <span className="text-muted-foreground text-xs">
+                {item.sublabel}
+              </span>
               <div className="">
                 <Dialog>
                   <DialogTrigger className="absolute inset-0 z-0"></DialogTrigger>

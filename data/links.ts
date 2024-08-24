@@ -1,7 +1,7 @@
 import { MenuLinks, OtherLink } from "@/types/links";
 
 export const menuLinks: MenuLinks[] = [
-  { label: "GLOSSARY", id: "glossary" },
+  { label: "GLOSSARY", id: "glossary?tags=キャラクター" },
   { label: "ARTICLES", id: "article" },
   { label: "QUIZ", id: "quiz" },
   { label: "ABOUT", id: "about" },
